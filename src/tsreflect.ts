@@ -23,28 +23,91 @@
  OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************** */
 
-/// <reference path="../lib/gruntjs.d.ts" />
 /// <reference path="../lib/tsreflect.d.ts" />
+/// <reference path="../lib/gruntjs.d.ts" />
+/// <reference path="../lib/node.d.ts" />
 
 import tsreflect = require("tsreflect");
+import fs = require("fs");
+import path = require("path");
 
 function task(grunt: IGrunt) {
 
-    grunt.registerMultiTask('tsreflect', 'Grunt plugin to write TypeScript declarations to JSON format', function() {
+    grunt.registerMultiTask('tsreflect', 'Grunt plugin to generate TypeScript JSON declaration files for runtime type information.', function() {
 
-        // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
-            punctuation: '.',
-            separator: ', '
         });
+
+        var start = process.hrtime();
+
+        var hasErrors = false;
 
         // Iterate over all specified file groups.
-        this.files.forEach((group:  grunt.file.IFileMap) => {
+        this.files.forEach((file:  grunt.file.IFileMap) => {
 
-            console.log(group);
+            var diagnostics = tsreflect.compile(file.src, createCompilerOptions(file, options));
+            for(var i = 0, l = diagnostics.length; i < l; i++) {
+
+                reportDiagnostic(diagnostics[i]);
+            }
         });
+
+        if(!hasErrors) {
+            var elapsed = process.hrtime(start);
+            console.log("Completed without errors in " + elapsed[0] + "s, " + (elapsed[1] / 1000000).toFixed(3) + "ms");
+        }
+
+        function reportDiagnostic(diagnostic: tsreflect.Diagnostic): void {
+            var output = "";
+
+            if(diagnostic.filename) {
+                output += ">> " + diagnostic.filename + "(" + diagnostic.line + "," + diagnostic.character + "): ";
+            }
+
+            var category = tsreflect.DiagnosticCategory[diagnostic.category].toLowerCase();
+            output += category + " TS" + diagnostic.code + ": " + diagnostic.messageText + "\n";
+
+            switch(diagnostic.category) {
+                case tsreflect.DiagnosticCategory.Warning:
+                    grunt.log.warn(output);
+                    break;
+                case tsreflect.DiagnosticCategory.Error:
+                    grunt.log.error(output);
+                    hasErrors = true;
+                    break;
+                case tsreflect.DiagnosticCategory.Message:
+                    grunt.log.writeln(output);
+                    break;
+            }
+        }
     });
 
-};
+    function createCompilerOptions(file: grunt.file.IFileMap, taskOptions: any): tsreflect.CompilerOptions {
+
+        var ret: tsreflect.CompilerOptions;
+
+        ret.noLib = !!taskOptions.noLib;
+        ret.noCheck = !!taskOptions.noCheck;
+
+        // set output file or output directory
+        var dest = file.dest;
+        if(isOutputFile(dest)) {
+            ret.out = dest;
+        }
+        else {
+            ret.outDir = dest;
+        }
+
+        ret.removeComments = !!taskOptions.removeComments;
+        ret.sourceRoot = taskOptions.sourceRoot;
+
+        return ret;
+    }
+
+    function isOutputFile(dest: string): boolean {
+
+        return dest && path.extname(dest) == ".js";
+    }
+}
 
 export = task;
