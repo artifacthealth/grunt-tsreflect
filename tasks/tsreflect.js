@@ -44,7 +44,7 @@ function task(grunt) {
 
         if (!hasErrors) {
             var elapsed = process.hrtime(start);
-            grunt.log.writeln("Completed without errors in " + elapsed[0] + "s, " + (elapsed[1] / 1000000).toFixed(3) + "ms");
+            grunt.log.ok("Completed without errors in " + elapsed[0] + "s, " + (elapsed[1] / 1000000).toFixed(3) + "ms");
         }
 
         function reportDiagnostic(diagnostic) {
