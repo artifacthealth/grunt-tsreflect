@@ -54,14 +54,14 @@ function task(grunt: IGrunt) {
 
         if(!hasErrors) {
             var elapsed = process.hrtime(start);
-            console.log("Completed without errors in " + elapsed[0] + "s, " + (elapsed[1] / 1000000).toFixed(3) + "ms");
+            grunt.log.writeln("Completed without errors in " + elapsed[0] + "s, " + (elapsed[1] / 1000000).toFixed(3) + "ms");
         }
 
         function reportDiagnostic(diagnostic: tsreflect.Diagnostic): void {
             var output = "";
 
             if(diagnostic.filename) {
-                output += ">> " + diagnostic.filename + "(" + diagnostic.line + "," + diagnostic.character + "): ";
+                output += diagnostic.filename + "(" + diagnostic.line + "," + diagnostic.character + "): ";
             }
 
             var category = tsreflect.DiagnosticCategory[diagnostic.category].toLowerCase();
@@ -84,7 +84,7 @@ function task(grunt: IGrunt) {
 
     function createCompilerOptions(file: grunt.file.IFileMap, taskOptions: any): tsreflect.CompilerOptions {
 
-        var ret: tsreflect.CompilerOptions;
+        var ret: tsreflect.CompilerOptions = {};
 
         ret.noLib = !!taskOptions.noLib;
         ret.noCheck = !!taskOptions.noCheck;
