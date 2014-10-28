@@ -54,7 +54,7 @@ function task(grunt: IGrunt) {
 
         if(!hasErrors) {
             var elapsed = process.hrtime(start);
-            grunt.log.writeln("Completed without errors in " + elapsed[0] + "s, " + (elapsed[1] / 1000000).toFixed(3) + "ms");
+            grunt.log.ok("Completed without errors in " + elapsed[0] + "s, " + (elapsed[1] / 1000000).toFixed(3) + "ms");
         }
 
         function reportDiagnostic(diagnostic: tsreflect.Diagnostic): void {
@@ -106,7 +106,7 @@ function task(grunt: IGrunt) {
 
     function isOutputFile(dest: string): boolean {
 
-        return dest && path.extname(dest) == ".js";
+        return dest && path.extname(dest) == ".json";
     }
 }
 

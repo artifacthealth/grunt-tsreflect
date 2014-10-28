@@ -92,7 +92,7 @@ function task(grunt) {
     }
 
     function isOutputFile(dest) {
-        return dest && path.extname(dest) == ".js";
+        return dest && path.extname(dest) == ".json";
     }
 }
 
