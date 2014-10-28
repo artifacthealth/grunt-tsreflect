@@ -15,9 +15,7 @@ module.exports = function(grunt) {
             build: {
                 src: [
                     "build/",
-                    "bin/lib.d.ts",
-                    "bin/tsreflect.d.ts",
-                    "bin/tsreflect.js"
+                    "tasks/"
                 ]
             }
         },
@@ -26,12 +24,14 @@ module.exports = function(grunt) {
             build: {
                 options: {
                     target: "es5",
+                    module: "commonjs",
                     sourceMap: true,
                     declaration: false,
-                    noImplicitAny: true
+                    noImplicitAny: true,
+                    basePath: 'src/'
                 },
                 src: ['src/tsreflect.ts'],
-                dest: 'build/tsreflect.js'
+                dest: 'build/'
             },
             tests: {
                 options: {
@@ -58,33 +58,18 @@ module.exports = function(grunt) {
 
         copy: {
             build: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'lib/',
-                        src: [
-                            'lib.d.ts'
-                        ],
-                        dest: 'build/'
-                    },
-                    {
-                        expand: true,
-                        cwd: 'lib/',
-                        src: [
-                            'tsreflect.d.ts',
-                            'lib.d.ts'
-                        ],
-                        dest: 'bin/'
-                    },
-                    {
-                        expand: true,
-                        cwd: 'build/',
-                        src: [
-                            'tsreflect.js'
-                        ],
-                        dest: 'bin/'
+                options: {
+                    process: function (content, srcpath) {
+                        // Remove source map from release file
+                        return content.replace("//# sourceMappingURL=tsreflect.js.map","");
                     }
-                ]
+                },
+                expand: true,
+                cwd: 'build/',
+                src: [
+                    'tsreflect.js'
+                ],
+                dest: 'tasks/'
             }
         },
 
