@@ -1,0 +1,24 @@
+{
+	"declares": [
+		{
+			"kind": "module",
+			"name": "A",
+			"declares": [
+				{
+					"kind": "class",
+					"name": "B"
+				}
+			]
+		},
+		{
+			"kind": "module",
+			"name": "A",
+			"declares": [
+				{
+					"kind": "class",
+					"name": "A"
+				}
+			]
+		}
+	]
+}

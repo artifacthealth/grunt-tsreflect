@@ -9,12 +9,16 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
-        pkg: grunt.file.read("COPYRIGHT.txt"),
+        pkg: grunt.file.readJSON("package.json"),
 
         clean: {
             build: {
                 src: [
-                    "build/",
+                    "build/"
+                ]
+            },
+            tasks: {
+                src: [
                     "tasks/"
                 ]
             }
@@ -23,53 +27,41 @@ module.exports = function(grunt) {
         typescript: {
             build: {
                 options: {
-                    target: "es5",
-                    module: "commonjs",
+                    target: 'es5',
+                    module: 'commonjs',
                     sourceMap: true,
-                    declaration: false,
-                    noImplicitAny: true,
-                    basePath: 'src/'
+                    noImplicitAny: true
                 },
-                src: ['src/tsreflect.ts'],
+                src: [
+                    'src/**/*.ts'
+                ],
                 dest: 'build/'
             },
             tests: {
                 options: {
-                    target: "es5",
-                    module: "commonjs",
+                    target: 'es5',
+                    module: 'commonjs',
                     sourceMap: true,
-                    noImplicitAny: true,
-                    basePath: 'tests/'
+                    noImplicitAny: true
                 },
-                src: ['tests/run.ts'],
+                src: [
+                    'tests/run.ts'
+                ],
                 dest: 'build/'
             }
         },
 
         concat: {
-            build: {
+            tasks: {
                 options: {
-                    banner: grunt.file.read("COPYRIGHT.txt")
-                },
-                src: ['build/tsreflect.js'],
-                dest: 'build/tsreflect.js'
-            }
-        },
-
-        copy: {
-            build: {
-                options: {
+                    banner: grunt.file.read("COPYRIGHT.txt"),
                     process: function (content, srcpath) {
                         // Remove source map from release file
                         return content.replace("//# sourceMappingURL=tsreflect.js.map","");
                     }
                 },
-                expand: true,
-                cwd: 'build/',
-                src: [
-                    'tsreflect.js'
-                ],
-                dest: 'tasks/'
+                src: 'build/src/tsreflectTask.js',
+                dest: 'tasks/tsreflect.js'
             }
         },
 
@@ -79,7 +71,9 @@ module.exports = function(grunt) {
                     "src/**/*.ts",
                     "typings/**/*.ts"
                 ],
-                tasks: [ "typescript:build" ]
+                tasks: [
+                    'typescript:build'
+                ]
             }
         },
 
@@ -88,12 +82,16 @@ module.exports = function(grunt) {
                 options: {
                     reporter: 'spec'
                 },
-                src: ['build/run.js']
+                src: [
+                    'build/tests/**/*.js'
+                ]
             }
         }
     });
 
     // Default task(s).
-    grunt.registerTask("default", [ "clean:build", "typescript:build", "concat:build", "copy:build" ]);
-    grunt.registerTask("test", [ "typescript:tests", "mochaTest:tests" ]);
+    grunt.registerTask("default", [ "build", "tasks", "tests" ]);
+    grunt.registerTask("build", [ "clean:build", "typescript:build" ]);
+    grunt.registerTask("tasks", [ "clean:tasks", "concat:tasks" ]);
+    grunt.registerTask("tests", [ "typescript:tests", "mochaTest:tests" ]);
 };

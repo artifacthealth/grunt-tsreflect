@@ -23,11 +23,11 @@
  OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************** */
 
-/// <reference path="../lib/tsreflect.d.ts" />
+/// <reference path="../lib/tsreflect-compiler.d.ts" />
 /// <reference path="../lib/gruntjs.d.ts" />
 /// <reference path="../lib/node.d.ts" />
 
-import tsreflect = require("tsreflect");
+import compiler = require("tsreflect-compiler");
 import fs = require("fs");
 import path = require("path");
 
@@ -45,7 +45,7 @@ function task(grunt: IGrunt) {
         // Iterate over all specified file groups.
         this.files.forEach((file:  grunt.file.IFileMap) => {
 
-            var diagnostics = tsreflect.compile(file.src, createCompilerOptions(file, options));
+            var diagnostics = compiler.compile(file.src, createCompilerOptions(file, options));
             for(var i = 0, l = diagnostics.length; i < l; i++) {
 
                 reportDiagnostic(diagnostics[i]);
@@ -57,34 +57,34 @@ function task(grunt: IGrunt) {
             grunt.log.ok("Completed without errors in " + elapsed[0] + "s, " + (elapsed[1] / 1000000).toFixed(3) + "ms");
         }
 
-        function reportDiagnostic(diagnostic: tsreflect.Diagnostic): void {
+        function reportDiagnostic(diagnostic: compiler.Diagnostic): void {
             var output = "";
 
             if(diagnostic.filename) {
                 output += diagnostic.filename + "(" + diagnostic.line + "," + diagnostic.character + "): ";
             }
 
-            var category = tsreflect.DiagnosticCategory[diagnostic.category].toLowerCase();
+            var category = compiler.DiagnosticCategory[diagnostic.category].toLowerCase();
             output += category + " TS" + diagnostic.code + ": " + diagnostic.messageText + "\n";
 
             switch(diagnostic.category) {
-                case tsreflect.DiagnosticCategory.Warning:
+                case compiler.DiagnosticCategory.Warning:
                     grunt.log.warn(output);
                     break;
-                case tsreflect.DiagnosticCategory.Error:
+                case compiler.DiagnosticCategory.Error:
                     grunt.log.error(output);
                     hasErrors = true;
                     break;
-                case tsreflect.DiagnosticCategory.Message:
+                case compiler.DiagnosticCategory.Message:
                     grunt.log.writeln(output);
                     break;
             }
         }
     });
 
-    function createCompilerOptions(file: grunt.file.IFileMap, taskOptions: any): tsreflect.CompilerOptions {
+    function createCompilerOptions(file: grunt.file.IFileMap, taskOptions: any): compiler.CompilerOptions {
 
-        var ret: tsreflect.CompilerOptions = {};
+        var ret: compiler.CompilerOptions = {};
 
         ret.noLib = !!taskOptions.noLib;
         ret.noCheck = !!taskOptions.noCheck;

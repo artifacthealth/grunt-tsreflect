@@ -1,5 +1,5 @@
 /*! *****************************************************************************
- Copyright (c) 2014 Artifact Health. All rights reserved.
+ Copyright (c) 2014 Artifact Health, LLC. All rights reserved.
 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
  OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************** */
 
-var tsreflect = require("tsreflect");
+var compiler = require("tsreflect-compiler");
 
 var path = require("path");
 
@@ -36,7 +36,7 @@ function task(grunt) {
         var hasErrors = false;
 
         this.files.forEach(function (file) {
-            var diagnostics = tsreflect.compile(file.src, createCompilerOptions(file, options));
+            var diagnostics = compiler.compile(file.src, createCompilerOptions(file, options));
             for (var i = 0, l = diagnostics.length; i < l; i++) {
                 reportDiagnostic(diagnostics[i]);
             }
@@ -54,18 +54,18 @@ function task(grunt) {
                 output += diagnostic.filename + "(" + diagnostic.line + "," + diagnostic.character + "): ";
             }
 
-            var category = tsreflect.DiagnosticCategory[diagnostic.category].toLowerCase();
+            var category = compiler.DiagnosticCategory[diagnostic.category].toLowerCase();
             output += category + " TS" + diagnostic.code + ": " + diagnostic.messageText + "\n";
 
             switch (diagnostic.category) {
-                case tsreflect.DiagnosticCategory.Warning:
+                case compiler.DiagnosticCategory.Warning:
                     grunt.log.warn(output);
                     break;
-                case tsreflect.DiagnosticCategory.Error:
+                case compiler.DiagnosticCategory.Error:
                     grunt.log.error(output);
                     hasErrors = true;
                     break;
-                case tsreflect.DiagnosticCategory.Message:
+                case compiler.DiagnosticCategory.Message:
                     grunt.log.writeln(output);
                     break;
             }
@@ -97,4 +97,4 @@ function task(grunt) {
 }
 
 module.exports = task;
-
+//# sourceMappingURL=tsreflectTask.js.map

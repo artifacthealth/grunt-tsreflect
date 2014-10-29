@@ -1,0 +1,13 @@
+{
+    "tsreflect": {
+        "removeCommentsOption": {
+            "options": {
+                "removeComments": true
+            },
+            "src": [
+                "externalModule1.ts"
+            ],
+            "dest": "../baselines/local/removeCommentsOption/"
+        }
+    }
+}

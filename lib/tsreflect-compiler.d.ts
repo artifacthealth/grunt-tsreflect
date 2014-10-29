@@ -1,4 +1,4 @@
-declare module "tsreflect" {
+declare module "tsreflect-compiler" {
 
     export interface Diagnostic {
         filename?: string;

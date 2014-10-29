@@ -1,0 +1,11 @@
+{
+    "tsreflect": {
+        "multipleExternalModules": {
+            "src": [
+                "externalModule1.ts",
+                "externalModule2.ts"
+            ],
+            "dest": "../baselines/local/multipleExternalModules/"
+        }
+    }
+}

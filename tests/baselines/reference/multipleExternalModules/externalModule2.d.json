@@ -1,0 +1,10 @@
+{
+	"external": true,
+	"declares": [
+		{
+			"kind": "class",
+			"name": "B"
+		}
+	],
+	"export": "B"
+}

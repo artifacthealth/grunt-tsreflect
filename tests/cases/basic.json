@@ -1,0 +1,10 @@
+{
+    "tsreflect": {
+        "basic": {
+            "src": [
+                "externalModule1.ts"
+            ],
+            "dest": "../baselines/local/basic/"
+        }
+    }
+}

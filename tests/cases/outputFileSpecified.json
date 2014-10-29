@@ -1,0 +1,10 @@
+{
+    "tsreflect": {
+        "outputFileSpecified": {
+            "src": [
+                "internalModule1.ts"
+            ],
+            "dest": "../baselines/local/outputFileSpecified/internalModule.d.json"
+        }
+    }
+}

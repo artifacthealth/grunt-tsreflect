@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "homepage": "TBD",
   "author": {
-    "name": "Meir Gottlieb",
+    "name": "Artifact Health, LLC",
     "url": "http://www.artifacthealth.com"
   },
   "private": true,
@@ -28,7 +28,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "tsreflect": "git+ssh://git@bitbucket.org/mgottlieb/tsreflect.git"
+    "tsreflect-compiler": "git+ssh://git@bitbucket.org/mgottlieb/tsreflect-compiler.git"
   },
   "devDependencies": {
     "chai": "^1.9.2",
@@ -40,6 +40,7 @@
     "grunt-mocha-test": "^0.12.2",
     "grunt-typescript": "^0.3.8",
     "mocha": "^2.0.1",
+    "rimraf": "^2.2.8",
     "typescript": "^1.1.0-1"
   },
   "peerDependencies": {
