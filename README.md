@@ -37,53 +37,62 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### noCheck
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something with whatever.
+Disable type checking. If you are sure that your code already compiles correctly with TypeScript, you can enable this option for slightly faster compile times.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### noLib
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something else with whatever else.
+Disable inclusion of default lib.d.ts.
+
+#### removeComments
+Type: `Boolean`
+Default value: `false`
+
+Do not include the description from JsDoc comments in compiled output.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+#### Compile files to output directory
+
 
 ```js
 grunt.initConfig({
   tsreflect: {
-    options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+      src: [
+        'src/file1.ts',
+        'src/file2.ts',
+        'src/files3.d.ts'
+      ],
+      dest: 'build/'
+    }
+  }
 });
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+#### Compile to specified file
 
 ```js
 grunt.initConfig({
   tsreflect: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+      src: [
+        'src/file1.ts',
+        'src/file2.ts',
+        'src/files3.d.ts'
+      ],
+      dest: 'build/file.d.json'
+    }
+  }
 });
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
 
 ## Release History
-_(Nothing yet)_
