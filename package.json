@@ -1,6 +1,6 @@
 {
   "name": "grunt-tsreflect",
-  "description": "Grunt plugin to generate TypeScript JSON declaration files for runtime type information.",
+  "description": "Grunt plugin to generate TypeScript declaration files in JSON format for runtime type information.",
   "version": "0.1.0",
   "homepage": "TBD",
   "author": {
@@ -52,6 +52,8 @@
     "reflection",
     "typescript",
     "json",
-    "declaration"
+    "declaration",
+    "type",
+    "introspection"
   ]
 }

@@ -30,7 +30,8 @@ module.exports = function(grunt) {
                     target: 'es5',
                     module: 'commonjs',
                     sourceMap: true,
-                    noImplicitAny: true
+                    noImplicitAny: true,
+                    basePath: 'src'
                 },
                 src: [
                     'src/**/*.ts'
@@ -42,7 +43,8 @@ module.exports = function(grunt) {
                     target: 'es5',
                     module: 'commonjs',
                     sourceMap: true,
-                    noImplicitAny: true
+                    noImplicitAny: true,
+                    basePath: 'tests'
                 },
                 src: [
                     'tests/run.ts'
@@ -60,7 +62,7 @@ module.exports = function(grunt) {
                         return content.replace("//# sourceMappingURL=tsreflect.js.map","");
                     }
                 },
-                src: 'build/src/tsreflectTask.js',
+                src: 'build/tsreflectTask.js',
                 dest: 'tasks/tsreflect.js'
             }
         },
@@ -83,7 +85,7 @@ module.exports = function(grunt) {
                     reporter: 'spec'
                 },
                 src: [
-                    'build/tests/**/*.js'
+                    'build/run.js'
                 ]
             }
         }

@@ -12,7 +12,6 @@ import childProcess = require("child_process");
 import rimraf = require("rimraf");
 import util = require("util");
 
-var tasksDir = "build/src/"
 var testCasesDir = "tests/cases/";
 var fixturesDir = "tests/fixtures/";
 var referenceBaselineDir = "tests/baselines/reference/";
@@ -43,7 +42,7 @@ function setupCase(filename: string): void {
 
         });
 
-        it('should run without errors', (done) => {
+        it('should have correct output in ' + localBaselineDir + baseName, (done) => {
 
             // clean up output directory
             rimraf(localBaselineDir + baseName, (err: Error) => {
