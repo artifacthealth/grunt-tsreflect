@@ -124,6 +124,26 @@ grunt.initConfig({
 });
 ```
 
+#### Compile to specified file and emit custom annotations
+
+```js
+grunt.initConfig({
+  tsreflect: {
+    files: {
+      options: {
+        annotations: true
+      },
+      src: [
+        'src/file1.ts',
+        'src/file2.ts',
+        'src/files3.d.ts'
+      ],
+      dest: 'build/file.d.json'
+    }
+  }
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
 
