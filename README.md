@@ -19,6 +19,9 @@ grunt.loadNpmTasks('grunt-tsreflect');
 
 ## The "tsreflect" task
 
+This task uses the tsreflect-compiler to generate JSON files which contain type information from your TypeScript files.
+The generated files are similar to TypeScript's .d.ts declaration files but are in a JSON format and have the extension .d.json.
+
 ### Overview
 In your project's Gruntfile, add a section named `tsreflect` to the data object passed into `grunt.initConfig()`.
 
@@ -30,8 +33,8 @@ grunt.initConfig({
     },
     your_target: {
       // Target-specific file lists and/or options go here.
-    },
-  },
+    }
+  }
 });
 ```
 
@@ -55,10 +58,39 @@ Default value: `false`
 
 Do not include the description from JsDoc comments in compiled output.
 
+#### noImplicitAny
+Type: `Boolean`
+Default value: `false`
+
+Warn on expressions and declarations with an implied any type.
+
+#### accessors
+Type: `Boolean`
+Default value: `false`
+
+Emit property accessor declarations.
+
+#### annotations
+Type: `Boolean`
+Default value: `false`
+
+Include custom annotations in output.
+
+#### removePrivates
+Type: `Boolean`
+Default value: `false`
+
+Do not emit private class member declarations.
+
+#### typePrivates
+Type: `Boolean`
+Default value: `false`
+
+Emit type information, if accessible, for private class members.
+
 ### Usage Examples
 
 #### Compile files to output directory
-
 
 ```js
 grunt.initConfig({

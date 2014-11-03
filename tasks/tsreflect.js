@@ -86,7 +86,12 @@ function task(grunt) {
         }
 
         ret.removeComments = !!taskOptions.removeComments;
-        ret.sourceRoot = taskOptions.sourceRoot;
+        ret.noImplicitAny = !!taskOptions.noImplicitAny;
+
+        ret.accessors = !!taskOptions.accessors;
+        ret.annotations = !!taskOptions.annotations;
+        ret.removePrivates = !!taskOptions.removePrivates;
+        ret.typePrivates = !!taskOptions.typePrivates;
 
         return ret;
     }

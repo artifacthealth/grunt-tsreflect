@@ -1,0 +1,13 @@
+{
+    "tsreflect": {
+        "annotations": {
+            "options": {
+                "annotations": true
+            },
+            "src": [
+                "externalModule1.ts"
+            ],
+            "dest": "../baselines/local/annotations/"
+        }
+    }
+}

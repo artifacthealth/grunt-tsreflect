@@ -1,0 +1,17 @@
+{
+    "external": true,
+    "declares": [
+        {
+            "kind": "class",
+            "name": "A",
+            "description": "This is the description.",
+            "annotations": [
+                {
+                    "name": "someName",
+                    "value": "someValue"
+                }
+            ]
+        }
+    ],
+    "export": "A"
+}
