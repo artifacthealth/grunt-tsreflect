@@ -23,9 +23,9 @@
  OTHER DEALINGS IN THE SOFTWARE.
  ***************************************************************************** */
 
-/// <reference path="../lib/tsreflect-compiler.d.ts" />
-/// <reference path="../lib/gruntjs.d.ts" />
-/// <reference path="../lib/node.d.ts" />
+/// <reference path="../typings/tsreflect-compiler.d.ts" />
+/// <reference path="../typings/gruntjs.d.ts" />
+/// <reference path="../typings/node.d.ts" />
 
 import compiler = require("tsreflect-compiler");
 import fs = require("fs");

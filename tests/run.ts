@@ -1,8 +1,8 @@
-/// <reference path="../lib/node.d.ts"/>
-/// <reference path="../lib/mocha.d.ts"/>
-/// <reference path="../lib/chai.d.ts"/>
-/// <reference path="../lib/gruntjs.d.ts"/>
-/// <reference path="../lib/rimraf.d.ts"/>
+/// <reference path="../typings/node.d.ts"/>
+/// <reference path="../typings/mocha.d.ts"/>
+/// <reference path="../typings/chai.d.ts"/>
+/// <reference path="../typings/gruntjs.d.ts"/>
+/// <reference path="../typings/rimraf.d.ts"/>
 
 import fs = require("fs");
 import path = require("path");
