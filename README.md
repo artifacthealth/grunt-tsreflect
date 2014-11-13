@@ -68,7 +68,7 @@ Warn on expressions and declarations with an implied any type.
 Type: `Boolean`
 Default value: `false`
 
-Emit property accessor declarations.
+Emit property accessor declarations. By default property accessors are emitted as regular properties.
 
 #### annotations
 Type: `Boolean`
@@ -87,6 +87,11 @@ Type: `Boolean`
 Default value: `false`
 
 Emit type information, if accessible, for private class members.
+
+By default, private class members are emitted. However, type information (such as parameter types or field types) are not emitted.
+Additionally, if a method is overloaded, only the first overload is emitted. Enabling this optional will emit full
+declarations for private class members (including all overloads) as long as the type of the member is accessible from outside of the module
+that contains the class. If the type of the member is not accessible, the type information will be silently excluded.
 
 ### Usage Examples
 
