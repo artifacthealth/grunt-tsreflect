@@ -1,6 +1,6 @@
 /**
  * This is the description.
- * @annotation someName "someValue"
+ * @someName "someValue"
  */
 class A {
 
