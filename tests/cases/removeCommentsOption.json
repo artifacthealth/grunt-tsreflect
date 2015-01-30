@@ -2,6 +2,7 @@
     "tsreflect": {
         "removeCommentsOption": {
             "options": {
+                "removeAnnotations": true,
                 "removeComments": true
             },
             "src": [

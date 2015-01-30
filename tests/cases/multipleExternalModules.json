@@ -1,6 +1,9 @@
 {
     "tsreflect": {
         "multipleExternalModules": {
+            "options": {
+                "removeAnnotations": true
+            },
             "src": [
                 "externalModule1.ts",
                 "externalModule2.ts"

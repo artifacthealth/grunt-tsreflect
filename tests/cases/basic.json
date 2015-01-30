@@ -1,6 +1,9 @@
 {
     "tsreflect": {
         "basic": {
+            "options": {
+                "removeAnnotations": true
+            },
             "src": [
                 "externalModule1.ts"
             ],

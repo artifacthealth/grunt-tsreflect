@@ -97,14 +97,14 @@ function task(grunt: IGrunt) {
         else {
             ret.outDir = dest;
         }
-
-        ret.removeComments = !!taskOptions.removeComments;
         ret.noImplicitAny = !!taskOptions.noImplicitAny;
+        ret.suppressImplicitAnyIndexErrors = !!taskOptions.suppressImplicitAnyIndexErrors;
 
-        ret.accessors = !!taskOptions.accessors;
-        ret.annotations = !!taskOptions.annotations;
+        ret.removeAccessors = !!taskOptions.removeAccessors;
+        ret.removeTypesOnPrivates = !!taskOptions.removeTypesOnPrivates;
+        ret.removeAnnotations = !!taskOptions.removeAnnotations;
+        ret.removeComments = !!taskOptions.removeComments;
         ret.removePrivates = !!taskOptions.removePrivates;
-        ret.typePrivates = !!taskOptions.typePrivates;
 
         return ret;
     }
