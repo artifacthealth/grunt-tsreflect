@@ -15,6 +15,10 @@ declare module "tsreflect-compiler" {
         Message,
     }
 
+    export interface IgnoreAnnotationTable {
+        [key: string]: boolean;
+    }
+
     export interface CompilerOptions {
         noLib?: boolean;
         noCheck?: boolean;
@@ -57,6 +61,11 @@ declare module "tsreflect-compiler" {
          * Do not emit type information for private class members.
          */
         removeTypesOnPrivates?: boolean;
+
+        /**
+         * Controls whether or not annotations with a given name are ignored.
+         */
+        ignoreAnnotation?: IgnoreAnnotationTable;
     }
 
     export function compile(filenames: string[], options: CompilerOptions): Diagnostic[];

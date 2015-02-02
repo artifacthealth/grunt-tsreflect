@@ -64,17 +64,23 @@ Default value: `false`
 
 Warn on expressions and declarations with an implied any type.
 
-#### accessors
+#### suppressImplicitAnyIndexErrors
 Type: `Boolean`
 Default value: `false`
 
-Emit property accessor declarations. By default property accessors are emitted as regular properties.
+Suppress warnings of an implied any type on index access.
 
-#### annotations
+#### removeAccessors
 Type: `Boolean`
 Default value: `false`
 
-Include custom annotations in output.
+Do not emit property accessor declarations. Instead, emit as field declarations.
+
+#### removeAnnotations
+Type: `Boolean`
+Default value: `false`
+
+Do not emit custom annotations in output.
 
 #### removePrivates
 Type: `Boolean`
@@ -82,16 +88,30 @@ Default value: `false`
 
 Do not emit private class member declarations.
 
-#### typePrivates
+#### removeTypesOnPrivates
 Type: `Boolean`
 Default value: `false`
 
-Emit type information, if accessible, for private class members.
+Do not emit type information for private class members.
 
-By default, private class members are emitted. However, type information (such as parameter types or field types) are not emitted.
-Additionally, if a method is overloaded, only the first overload is emitted. Enabling this optional will emit full
-declarations for private class members (including all overloads) as long as the type of the member is accessible from outside of the module
-that contains the class. If the type of the member is not accessible, the type information will be silently excluded.
+By default, full declarations for private class members (including all overloads) are emitted as long as the type of
+the member is accessible from outside of the module that contains the class. If the type of the member is not
+accessible, the type information will be silently excluded.
+
+#### libPath
+Type: `String`
+
+Path to the lib.d.json file relative to compiler javascript source.
+
+#### ignoreAnnotation
+Type: `[annotationName: String]: Boolean`
+
+Controls whether or not annotations with a given name are ignored.
+
+By default all default JsDoc annotations are ignored when generating declaration files. The ignoreAnnotations option
+can be used to include an annotation that is ignored by default, or to ignore additional annotations. Please see
+examples below for more information.
+
 
 ### Usage Examples
 
@@ -129,14 +149,14 @@ grunt.initConfig({
 });
 ```
 
-#### Compile to specified file and emit custom annotations
+#### Compile to specified file and do not emit custom annotations
 
 ```js
 grunt.initConfig({
   tsreflect: {
     files: {
       options: {
-        annotations: true
+        removeAnnotations: true
       },
       src: [
         'src/file1.ts',
@@ -149,7 +169,28 @@ grunt.initConfig({
 });
 ```
 
+#### Ignore @label annotation
+
+```js
+grunt.initConfig({
+  tsreflect: {
+    files: {
+      options: {
+        ignoreAnnotation: {
+            label: true
+        }
+      },
+      src: [
+        'src/file1.ts'
+      ],
+      dest: 'build/'
+    }
+  }
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
 
 ## Release History
+
