@@ -2,23 +2,17 @@
   "name": "grunt-tsreflect",
   "description": "Grunt plugin to generate TypeScript declaration files in JSON format for runtime type information.",
   "version": "0.1.0",
-  "homepage": "TBD",
   "author": {
     "name": "Artifact Health, LLC",
     "url": "http://www.artifacthealth.com"
   },
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/mgottlieb/grunt-tsreflect.git"
   },
-  "bugs": {
-    "url": "TBD"
-  },
   "licenses": [
     {
-      "type": "MIT",
-      "url": "https://github.com/meir/grunt-temp/blob/master/LICENSE-MIT"
+      "type": "MIT"
     }
   ],
   "engines": {
@@ -28,7 +22,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "tsreflect-compiler": "git+ssh://git@bitbucket.org/mgottlieb/tsreflect-compiler.git"
+    "tsreflect-compiler": "https://github.com/artifacthealth/grunt-tsreflect.git"
   },
   "devDependencies": {
     "chai": "^1.9.2",
