@@ -6,3 +6,4 @@ grunt-tsreflect.iml
 src
 tests
 typings
+Gruntfile.js
