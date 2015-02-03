@@ -20,7 +20,7 @@
   },
   "main": "tasks/tsreflect.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt"
   },
   "dependencies": {
     "tsreflect-compiler": "^0.1.0"
