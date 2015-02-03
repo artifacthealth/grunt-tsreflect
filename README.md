@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/artifacthealth/grunt-tsreflect.svg?branch=master)](https://travis-ci.org/artifacthealth/grunt-tsreflect)
+
 # grunt-tsreflect
 
 > Grunt plugin to generate TypeScript declaration files in JSON format for runtime type information.
