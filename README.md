@@ -19,7 +19,7 @@ grunt.loadNpmTasks('grunt-tsreflect');
 
 ## The "tsreflect" task
 
-This task uses the tsreflect-compiler to generate JSON files which contain type information from your TypeScript files.
+This task uses the [tsreflect-compiler](https://github.com/artifacthealth/tsreflect-compiler) to generate JSON files which contain type information from your TypeScript files.
 The generated files are similar to TypeScript's .d.ts declaration files but are in a JSON format and have the extension .d.json.
 
 ### Overview
