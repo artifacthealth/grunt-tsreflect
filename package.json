@@ -1,7 +1,7 @@
 {
   "name": "grunt-tsreflect",
   "description": "Grunt plugin to generate TypeScript declaration files in JSON format for runtime type information.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Artifact Health, LLC",
     "url": "http://www.artifacthealth.com"
@@ -23,7 +23,7 @@
     "test": "grunt"
   },
   "dependencies": {
-    "tsreflect-compiler": "^0.1.0"
+    "tsreflect-compiler": "^0.1.5"
   },
   "devDependencies": {
     "chai": "^1.9.2",
